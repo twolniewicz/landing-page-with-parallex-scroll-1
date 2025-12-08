@@ -74,7 +74,7 @@ export default function ParallaxSection({
             alt="background"
             fill
             unoptimized
-            className="object-cover scale-[1.2]"
+            className="object-cover scale-[1.1]"
           />
         </motion.div>
       )}

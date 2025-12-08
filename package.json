@@ -12,7 +12,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "@svgr/webpack": "^8.1.0",
     "framer-motion": "^10.16.5",
-    "next": "14.0.3",
+    "next": "^14.2.33",
     "react": "^18",
     "react-dom": "^18"
   },
