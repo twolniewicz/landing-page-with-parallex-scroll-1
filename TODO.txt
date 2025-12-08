@@ -1,0 +1,2 @@
+- fix horizontal scroll when images are 100% size
+- add snap or sticky behavior on vertical/horizontal so that scrolling "snaps" to the page rather than scrolling past it.  
