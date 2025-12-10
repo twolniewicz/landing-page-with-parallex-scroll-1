@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
@@ -27,15 +27,17 @@ export default function ParallaxSection({
   horizontal = false,
   horizontalProgress, 
 }: SectionProps) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
+  const freezeProgress = scrollYProgress;
+
   const y = useTransform(
-    scrollYProgress,
+    freezeProgress,
     [0, 1],
     parallax && (direction === "vertical" || direction === "both")
       ? ["-20%", "10%"]
@@ -43,20 +45,45 @@ export default function ParallaxSection({
   );
 
   const x = useTransform(
-    horizontalProgress ?? scrollYProgress,
+    horizontalProgress ?? freezeProgress,
     [0, 1],
     parallax && (direction === "horizontal" || direction === "both")
-      ? ["10%", "-10%"] 
+      ? ["10%", "-10%"]
       : ["0%", "0%"]
   );
 
+  // ──────────────────────────────────────────────
+  // ⭐ AUTO SNAP SECTION (KHÔNG PHÁ PARALLAX)
+  // ──────────────────────────────────────────────
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let timeout: any;
+
+    const onScroll = () => {
+      clearTimeout(timeout);
+
+      timeout = setTimeout(() => {
+        const rect = el.getBoundingClientRect();
+
+        // Khi section nằm trong +/- 40% viewport → snap về đúng top
+        if (Math.abs(rect.top) < window.innerHeight * 0.4) {
+          window.scrollTo({
+            top: window.scrollY + rect.top,
+            behavior: "smooth",
+          });
+        }
+      }, 70);
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  // ──────────────────────────────────────────────
+
   return (
-    <section
-      ref={ref}
-      className={`relative w-screen overflow-hidden ${height} ${
-        horizontal ? "shrink-0" : ""
-      }`}
-    >
+    <section ref={ref} className={`relative w-screen overflow-hidden ${height}`}>
       {bg && (
         <motion.div
           style={{
@@ -74,7 +101,8 @@ export default function ParallaxSection({
             alt="background"
             fill
             unoptimized
-            className="object-cover scale-[1.1]"
+            className="object-cover"
+            style={{ transform: "scale(1.2)", transformOrigin: "center" }}
           />
         </motion.div>
       )}
