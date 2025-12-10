@@ -30,7 +30,7 @@ export default function App() {
         center
         //height="h-[100vh]"
         html={<div className="items-center justify-center">
-          <div className="absolute inset-0 bg-black/30"></div><center><h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg"><font color="#d9feff">D</font>ata <font color="#d9feff">G</font>overnance <span className="font-normal"><i>by</i></span> <font color="#d9feff">Design</font><span className="font-normal"><sup><small><small> TM</small></small> </sup></span></h1>
+          <div className="absolute inset-0 bg-black/30"></div><center><h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg"><span className="text-[#d9feff]">D</span>ata <span className="text-[#d9feff]">G</span>overnance <span className="font-normal"><i>by</i></span> <span className="text-[#d9feff]">Design</span><span className="font-normal"><sup><small><small> TM</small></small> </sup></span></h1>
           <p className="mt-4 text-lg md:text-xl text-white drop-shadow-lg mix-blend-difference">Leadership and Strategic Advisory in Business Value driven DG/DQ & DM Initiatives</p>
           </center></div>
         }
