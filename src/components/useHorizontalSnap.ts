@@ -14,7 +14,6 @@ export function useHorizontalSnap(
     let lastScrollY = window.scrollY;
 
     const onScroll = () => {
-      // 🛑 Nếu đang animate mà user scroll → STOP ngay
       if (currentAnimation) {
         currentAnimation.stop();
         currentAnimation = null;
@@ -36,7 +35,7 @@ export function useHorizontalSnap(
             currentAnimation = null;
           },
         });
-      }, 120); // only snap AFTER scroll stops
+      }, 120);
     };
 
     window.addEventListener("scroll", onScroll);

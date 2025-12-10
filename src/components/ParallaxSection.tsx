@@ -52,9 +52,6 @@ export default function ParallaxSection({
       : ["0%", "0%"]
   );
 
-  // ──────────────────────────────────────────────
-  // ⭐ AUTO SNAP SECTION (KHÔNG PHÁ PARALLAX)
-  // ──────────────────────────────────────────────
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -66,8 +63,6 @@ export default function ParallaxSection({
 
       timeout = setTimeout(() => {
         const rect = el.getBoundingClientRect();
-
-        // Khi section nằm trong +/- 40% viewport → snap về đúng top
         if (Math.abs(rect.top) < window.innerHeight * 0.4) {
           window.scrollTo({
             top: window.scrollY + rect.top,
@@ -80,7 +75,6 @@ export default function ParallaxSection({
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  // ──────────────────────────────────────────────
 
   return (
     <section ref={ref} className={`relative w-screen overflow-hidden ${height}`}>
