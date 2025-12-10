@@ -3,7 +3,7 @@
 import { Children, cloneElement, isValidElement, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useElementSize } from "@/hooks/useElementSize"; 
-import { useHorizontalSnap } from "@/hooks/useHorizontalSnap";
+import { useHorizontalSnap } from "./useHorizontalSnap";
 
 export default function HorizontalWrapper({ children }: { children: React.ReactNode[] }) {
   const containerRef = useRef<HTMLDivElement>(null);

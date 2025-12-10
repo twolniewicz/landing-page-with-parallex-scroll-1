@@ -3,7 +3,7 @@
 import { Children, cloneElement, isValidElement, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useElementSize } from "@/hooks/useElementSize"; 
-import { useHorizontalSnap } from "@/hooks/useHorizontalSnap";
+import { useHorizontalSnap } from "./useHorizontalSnap";
 
 export default function HorizontalWrapper({ children }: { children: React.ReactNode[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,10 +28,10 @@ export default function HorizontalWrapper({ children }: { children: React.ReactN
     <section
       ref={containerRef}
       className="relative"
-      style={{ width: `100vw`, height: `${pageCount * 100}vh` }}
+      style={{ height: `${pageCount * 100}vh` }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <motion.div style={{ x }} className="flex w-full h-full will-change-transform">
+      <div className="sticky top-0 w-screen h-screen overflow-hidden">
+        <motion.div style={{ x }} className="flex h-full will-change-transform">
           {Children.map(children, (child, idx) =>
             isValidElement(child) ? (
               <div key={idx} className="w-full h-full flex-shrink-0">

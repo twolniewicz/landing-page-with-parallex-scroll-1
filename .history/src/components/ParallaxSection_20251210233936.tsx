@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { MotionValue, useScroll, useTransform } from "framer-motion";
 import { useSnapSection } from "@/hooks/useSnapSection";
 import ParallaxBackground from "./ParallaxBackground";
@@ -36,21 +36,22 @@ export default function ParallaxSection({
   });
 
   const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    parallax && (direction === "vertical" || direction === "both")
-      ? ["-20%", "10%"]
-      : ["0%", "0%"]
-  );
+  scrollYProgress,
+  [0, 1],
+  parallax && (direction === "vertical" || direction === "both")
+    ? ["-20%", "10%"]
+    : ["0%", "0%"]
+);
 
 
   const x = useTransform(
-    horizontalProgress ?? scrollYProgress,
-    [0, 1],
-    parallax && (direction === "horizontal" || direction === "both")
-      ? ["10%", "-10%"]
-      : ["0%", "0%"]
-  );
+  horizontalProgress ?? scrollYProgress,
+  [0, 1],
+  parallax && (direction === "horizontal" || direction === "both")
+    ? ["10%", "-10%"]
+    : ["0%", "0%"]
+);
+
 
   return (
     <section ref={ref} className={`relative w-screen overflow-hidden ${height}`}>

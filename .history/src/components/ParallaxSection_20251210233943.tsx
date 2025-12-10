@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { MotionValue, useScroll, useTransform } from "framer-motion";
 import { useSnapSection } from "@/hooks/useSnapSection";
 import ParallaxBackground from "./ParallaxBackground";
@@ -51,6 +51,7 @@ export default function ParallaxSection({
       ? ["10%", "-10%"]
       : ["0%", "0%"]
   );
+
 
   return (
     <section ref={ref} className={`relative w-screen overflow-hidden ${height}`}>
